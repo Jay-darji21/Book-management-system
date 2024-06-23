@@ -44,11 +44,11 @@ public class RegisterServlet extends HttpServlet {
 			} else if (check != null) {
 				// Store data in database
 				userDAOImpl usDAO = new userDAOImpl(DBconnect.getConn());
-				boolean flag = usDAO.Register(user);
+				
 				boolean flag2 = usDAO.checkUser(email);
 
 				if (flag2) {
-					
+					boolean flag = usDAO.Register(user);
 					if (flag) {
 						session.setAttribute("succMsg", "Registered Successfully...");
 						resp.sendRedirect("register.jsp");
